@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   },
   TitleText: {
     fontSize: 30,
-    color: '#4EA8DE',
+    color: '#32cf98',
     // fontFamily: 'Inter',
     fontWeight: 'bold',
     marginBottom: 30,
@@ -42,6 +42,18 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     paddingHorizontal: 40,
   },
+  inputBorder: {
+    height: 70,
+    width: 'auto',
+    backgroundColor: '#262626',
+    borderRadius: 5,
+    color: '#fff',
+    zIndex: 1,
+    textAlign: 'center',
+    paddingHorizontal: 40,
+    borderWidth: 1,
+    borderColor: '#fff',
+  },
   text: {
     color: '#D9D9D9',
   },
@@ -49,11 +61,11 @@ export const styles = StyleSheet.create({
     color: '#808080',
   },
   infoText: {
-    color: '#4EA8DE',
+    color: '#32cf98',
     fontWeight: 'bold',
   },
   infoText2: {
-    color: '#8284FA',
+    color: '#32cf98',
     fontWeight: 'bold',
   },
   button: {
@@ -66,7 +78,7 @@ export const styles = StyleSheet.create({
     marginLeft: 5,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: '#56c46c',
+    backgroundColor: '#42a870',
   },
   infoBackground: {
     width: '100%',
@@ -101,12 +113,17 @@ export const styles = StyleSheet.create({
   },
   list: {
     flex: 0,
-    // width: 'auto',
-    // height: 300,
+    // width: 320,
+    // height: 1000,
     // maxHeight: 300,
     justifyContent: 'center',
     alignItems: 'center',
     // padding: 16,
     zIndex: 2,
+    overflow: 'hidden',
+  },
+  listView: {
+    paddingBottom: 10,
+    overflow: 'hidden',
   }
 });

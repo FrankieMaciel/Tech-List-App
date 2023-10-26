@@ -1,8 +1,9 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 import { ListItem } from '../../types/listType';
 
-export function MyCheckbox(ListItem: ListItem) {
+import { Square, CheckSquare } from 'react-native-feather';
 
+export function MyCheckbox(ListItem: ListItem) {
 
   function handleCheckPress(): void {
     ListItem.checkItem(ListItem.index);
@@ -12,9 +13,17 @@ export function MyCheckbox(ListItem: ListItem) {
     <TouchableOpacity onPress={handleCheckPress}>
       <View>
         {ListItem.isChecked ? (
-          <Text>✔️</Text>
+          <CheckSquare
+            stroke="#387065"
+            width={20}
+            height={20}
+          />
         ) : (
-          <Text>◻️</Text>
+          <Square
+            stroke="#32cf98"
+            width={20} 
+            height={20}
+          />
         )}
       </View>
     </TouchableOpacity>

@@ -1,16 +1,18 @@
-import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { TouchableOpacity, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { styles } from './styles';
 import { useState } from 'react';
 
 import { ListItem } from '../../types/listType';
 import { Item } from '../../components/item/Item';
+import { PlusCircle } from 'react-native-feather';
 
 export function ListPage() 
 {  
   const [list, setList] = useState<Array<ListItem>>([]);
   const [usertextInput, setUserTextInput] = useState('');
-  const [numList, setNumList] = useState(0);
+  const [isInputOnFocus, setisInputOnFocus] = useState(false);
   const [markeditens, setMarkeditens] = useState(0);
+  const [numList, setNumList] = useState(0);
 
   const borderBottomStyle = {
     borderBottomWidth: numList > 0 ? 0 : 1,
@@ -40,6 +42,8 @@ export function ListPage()
   }
 
   let addItem = () => {
+    let isEmpty = usertextInput.trim() === "";
+    if (isEmpty) return;
     let newItem: ListItem = {
       index: list.length,
       title: usertextInput,
@@ -52,6 +56,13 @@ export function ListPage()
     setUserTextInput('');
   }
 
+  function handleInputFocus(): void {
+    setisInputOnFocus(true);
+  }
+  function handleInputBlur(): void {
+    setisInputOnFocus(false);
+  };
+
   return (
     <>
       <View style={styles.TitleBackground}>
@@ -61,12 +72,18 @@ export function ListPage()
           value={usertextInput}
           placeholder="Adicione uma nova tecnologia"
           placeholderTextColor="#808080"
-          style={styles.input}
+          style={[isInputOnFocus ? styles.inputBorder : styles.input]}
           onChangeText={setUserTextInput}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
           />
-          <Pressable onPress={addItem} style={styles.button}>
-            <Text style={styles.text}>+</Text>
-          </Pressable>
+          <TouchableOpacity onPress={addItem} style={styles.button}>
+            <PlusCircle 
+            stroke={styles.text.color} 
+            fill="#00000000" 
+            width={20} 
+            height={20}/>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.BodyBackground}>
@@ -85,17 +102,24 @@ export function ListPage()
               </View>
             </View>
           </View>
-          <ScrollView contentContainerStyle={styles.list}>
-            {list.map((item, index) => (
-              <Item 
-                index={index}
-                title={item.title} 
-                isChecked={item.isChecked}
-                removeItem={deleteItem}
-                checkItem={markCheckItem}
-              />
-            ))}
-          </ScrollView>
+            <View style={styles.listView}>
+            <ScrollView 
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.list}
+            // style={styles.list}
+            >
+              {list.map((item, index) => (
+                <Item
+                  key={index}
+                  index={index}
+                  title={item.title} 
+                  isChecked={item.isChecked}
+                  removeItem={deleteItem}
+                  checkItem={markCheckItem}
+                  />
+                  ))}
+            </ScrollView>
+          </View>
         </View>
       </View>
     </>
