@@ -41,6 +41,8 @@ export const styles = StyleSheet.create({
     zIndex: 1,
     textAlign: 'center',
     paddingHorizontal: 40,
+    borderWidth: 1,
+    borderColor: '#333333',
   },
   inputBorder: {
     height: 70,
@@ -52,7 +54,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     paddingHorizontal: 40,
     borderWidth: 1,
-    borderColor: '#fff',
+    borderColor: '#389c6f',
   },
   text: {
     color: '#D9D9D9',
