@@ -1,35 +1,30 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { MyCheckbox } from '../checkbox/MyCheckbox';
 import { ListItem } from '../../types/listType';
-import { Dispatch, SetStateAction } from 'react';
 
-type Dispatcher<S> = Dispatch<SetStateAction<S>>;
+export function Item(listItem: ListItem) {
 
-export function Item(
-  title: String, 
-  isChecked: boolean,
-  list: ListItem[], 
-  setList: Dispatcher<ListItem[]>, 
-  index: number
-  ) {
-
-  let toggleItem = (id: number, newValue: boolean) => {
-    const updatedList = list.map((item) => {
-      if (item.id === id) {
-        return { ...item, isChecked: newValue };
-      }
-      return item;
-    });
-  
-    setList(updatedList);
+  function removeitem(): void {
+    listItem.removeItem(listItem.index);
   }
 
   return(
     <View style={styles.background}>
-      <MyCheckbox/>
-      <Text style={styles.text}>{title}</Text>
-      <Pressable style={styles.button}>
-            <Text style={styles.text}>Excloi</Text>
+      <MyCheckbox
+        index={listItem.index}
+        title={listItem.title}
+        isChecked={listItem.isChecked}
+        removeItem={listItem.removeItem}
+        checkItem={listItem.checkItem}
+      />
+      <Text style={styles.text}>{listItem.title}</Text>
+      <Pressable 
+        style={styles.button} 
+        onPress={removeitem}
+      >
+        <View style={styles.tv}>
+          <Text style={styles.text}>X</Text>
+        </View>
       </Pressable>
     </View>
   )
@@ -47,12 +42,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 50,
     justifyContent: 'space-evenly',
+    borderWidth: 1,
+    borderColor: '#444444',
   },
   text: {
     color: '#D9D9D9',
     fontSize: 15,
   },
   button: {
-
+    width: 30,
+    height: 30,
+    backgroundColor: '#E25858',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+  },
+  tv: {
+    width: 20,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 })
