@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     height: 30,
     flexDirection: 'row',
     justifyContent: 'center',
-    width: '100%',
+    width: 250,
     padding: 20,
     top: '90%',
 
@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
   },
   input: {
     height: 70,
-    width: 'auto',
+    width: 260,
     backgroundColor: '#262626',
     borderRadius: 5,
     color: '#fff',
@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
   },
   inputBorder: {
     height: 70,
-    width: 'auto',
+    width: 260,
     backgroundColor: '#262626',
     borderRadius: 5,
     color: '#fff',
@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     // paddingVertical: 20,
     // paddingHorizontal: 25,
-    marginLeft: 5,
+    // marginLeft: 5,
     borderRadius: 4,
     elevation: 3,
     backgroundColor: '#42a870',
@@ -127,5 +127,60 @@ export const styles = StyleSheet.create({
   listView: {
     paddingBottom: 10,
     overflow: 'hidden',
+  },
+  underButton: {
+    display: 'flex',
+    width: 70,
+    height: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#158265',
+    marginLeft: 5,
+    elevation: 3,
+    borderRadius: 4,
+  }
+});
+
+export const textStyles = StyleSheet.create({
+  Title: {
+    fontFamily: 'Abel',
+    color: '#32cf98',
+    fontSize: 30,
+    // fontWeight: 'bold',
+  },
+  text: {
+    fontFamily: 'Abel',
+    color: '#32cf98',
+    fontSize: 15,
+    // fontWeight: 'bold',
+  },
+  empty: {
+    fontFamily: 'Abel',
+    color: '#808080',
+    fontSize: 15,
+    margin: 40,
+    textAlign: 'center',
+    width: 300,
+  },
+  clipboardView: {
+    width: 300,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    paddingTop: 40,
+    marginBottom: 30,
+  },
+  boldText: {
+    fontFamily: 'Abel',
+    color: '#808080',
+    fontSize: 15,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    width: 100,
+  },
+  emptyView: {
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
