@@ -127,6 +127,7 @@ export const styles = StyleSheet.create({
   listView: {
     paddingBottom: 10,
     overflow: 'hidden',
+    height: 280,
   },
   underButton: {
     display: 'flex',
@@ -138,6 +139,18 @@ export const styles = StyleSheet.create({
     marginLeft: 5,
     elevation: 3,
     borderRadius: 4,
+  },
+  progressBarBG: {
+    display: 'flex',
+    position: 'absolute',
+    width: 260,
+    height: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    zIndex: 4,
+    margin: 50,
+    marginTop: 380,
   }
 });
 

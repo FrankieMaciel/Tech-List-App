@@ -6,11 +6,10 @@ import { ListItem } from '../../types/listType';
 import { Item } from '../../components/item/Item';
 import { PlusCircle, Clipboard } from 'react-native-feather';
 
-import * as SplashScreen from 'expo-splash-screen';
-
 import { useFonts, Inter_400Regular } from '@expo-google-fonts/inter';
 import { Abel_400Regular } from '@expo-google-fonts/abel';
 import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
+import ProgressBar from '../../components/progressBar/progressBar';
 
 export function ListPage()
 {  
@@ -76,6 +75,41 @@ export function ListPage()
   function handleInputBlur(): void {
     setisInputOnFocus(false);
   };
+
+  function calcProgress(): number {
+    if (markeditens < 1 || numList < 1) return 0;
+    let progress: number = markeditens / numList;
+    return progress;
+  }
+
+  function calcColor(): string {
+    let color1: string = '#c95e36';
+    let color2: string = '#54ba6f';
+
+    color1 = color1.replace('#', '');
+    color2 = color2.replace('#', '');
+
+    const valorCor1 = parseInt(color1, 16);
+    const valorCor2 = parseInt(color2, 16);
+
+    const r1 = (valorCor1 >> 16) & 255;
+    const g1 = (valorCor1 >> 8) & 255;
+    const b1 = valorCor1 & 255;
+
+    const r2 = (valorCor2 >> 16) & 255;
+    const g2 = (valorCor2 >> 8) & 255;
+    const b2 = valorCor2 & 255;
+
+    let progress = calcProgress();
+
+    const rIntermediario = Math.round(r1 + (r2 - r1) * progress);
+    const gIntermediario = Math.round(g1 + (g2 - g1) * progress);
+    const bIntermediario = Math.round(b1 + (b2 - b1) * progress);
+
+    const corIntermediaria = `#${(1 << 24 | rIntermediario << 16 | gIntermediario << 8 | bIntermediario).toString(16).slice(1)}`;
+
+    return corIntermediaria;
+  }
 
   return (
     <>
@@ -152,6 +186,9 @@ export function ListPage()
                 </View>
             ) : null}
           </View>
+        </View>
+        <View style={styles.progressBarBG}>
+          <ProgressBar progress={calcProgress()} color={calcColor()}/>
         </View>
       </View>
     </>
